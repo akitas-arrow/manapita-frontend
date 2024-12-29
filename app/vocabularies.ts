@@ -92,5 +92,9 @@ export const vocabularies = {
       "ろぐいんするには、めーるにきさいされたこーどをにゅうりょくしてください。そうしんさき:",
     "Your code is on the way. To log in, enter the code we texted to":
       "ろぐいんするには、てきすとめっせーじにきさいされたこーどをにゅうりょくしてください。そうしんさき:",
+    "Auth UserPool not configured.":
+      "おーすゆーざーぷーるがせっていされていません",
+    "Incorrect username or password.":
+      "めーるあどれすまたはぱすわーどがまちがっています。",
   },
 };
