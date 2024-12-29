@@ -1,12 +1,11 @@
 "use client";
 
-import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
-import "@aws-amplify/ui-react/styles.css";
 import { useEffect } from "react";
 import { getAccessToken } from "./functions/settion";
 import { signOut } from "aws-amplify/auth";
+import Link from "next/link";
 
 Amplify.configure(outputs);
 
@@ -31,7 +30,10 @@ export default function App() {
 
   return (
     <main>
-      HOME
+      <h1>なにであそぶ?</h1>
+      <div>
+        <Link href={"/subject/animal"}>どうぶつ</Link>
+      </div>
       <button onClick={() => signOut()}>SignOut</button>
     </main>
   );

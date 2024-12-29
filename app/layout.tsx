@@ -1,15 +1,12 @@
 "use client";
 
-import { Inter } from "next/font/google";
-import "./app.css";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import "@/app/globals.css";
 import { I18n } from "aws-amplify/utils";
 import { vocabularies } from "./vocabularies";
 import Image from "next/image";
 import styles from "@/app/layout.module.scss";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const compoennts = {
   Header() {
@@ -37,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
+        レイアウト
         <Authenticator hideSignUp components={compoennts}>
           {children}
         </Authenticator>
