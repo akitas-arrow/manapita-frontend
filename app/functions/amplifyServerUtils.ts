@@ -18,10 +18,28 @@ export const getAuthenticated = async (
     operation: async (contextSpec) => {
       try {
         const session = await fetchAuthSession(contextSpec);
-        return session.tokens !== undefined;
+        return (
+          session.tokens?.accessToken !== undefined &&
+          session.tokens?.idToken !== undefined
+        );
       } catch (error) {
         console.log(error);
         return false;
+      }
+    },
+  });
+};
+
+export const getIdToken = async (nextServerContext: NextServerContext) => {
+  return await runWithAmplifyServerContext({
+    nextServerContext: nextServerContext,
+    operation: async (contextSpec) => {
+      try {
+        const session = await fetchAuthSession(contextSpec);
+        return session.tokens?.idToken;
+      } catch (error) {
+        console.log(error);
+        return undefined;
       }
     },
   });
