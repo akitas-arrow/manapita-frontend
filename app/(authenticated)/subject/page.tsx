@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fetchSubject } from "./fetcher";
+import { fetchSubject } from "../../functions/apis/subject";
 
 export default async function Subject() {
   const response = await fetchSubject(
@@ -9,8 +9,8 @@ export default async function Subject() {
   return (
     <div>
       {response?.subject.map((s) => (
-        <Link href={`/subject/${s}`} key={s}>
-          {s}
+        <Link href={`/${s.value}`} key={s.value}>
+          {s.label}
         </Link>
       ))}
     </div>

@@ -1,4 +1,4 @@
-import { fetchQuestions } from "./fetcher";
+import { fetchQuestions } from "../../../functions/apis/question";
 
 export default async function Questions({
   searchParams,

@@ -2,7 +2,7 @@ import { getIdToken } from "@/app/functions/amplifyServerUtils";
 import { cookies } from "next/headers";
 
 type Subjects = {
-  subject: string[];
+  subject: { label: string; value: string }[];
 };
 
 export const fetchSubject = async (
@@ -23,6 +23,7 @@ export const fetchSubject = async (
       throw new Error(response.statusText);
     }
     const data = await response.json();
+    console.log(data.subject);
 
     return data;
   } catch (error) {
