@@ -4,11 +4,7 @@ import { resetQuiz } from "@/app/lib/redux/hiraganaQuizSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import Link from "next/link";
 
-type Props = {
-  categoryName: string;
-};
-
-export default function ResultStep({ categoryName }: Props) {
+export default function ResultStep() {
   const dispatch = useAppDispatch();
   const hiraganaQuiz = useAppSelector((state) => state.hiraganaQuiz);
   const onClickReset = () => {

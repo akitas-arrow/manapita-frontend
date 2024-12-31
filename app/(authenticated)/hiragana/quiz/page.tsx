@@ -31,9 +31,7 @@ export default function Quiz() {
           }
         />
       )}
-      {hiraganaQuiz.step === "result" && (
-        <ResultStep categoryName={questions?.category ?? ""} />
-      )}
+      {hiraganaQuiz.step === "result" && <ResultStep />}
     </div>
   );
 }

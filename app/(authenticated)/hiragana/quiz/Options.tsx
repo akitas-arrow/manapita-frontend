@@ -1,6 +1,5 @@
 "use client";
 
-import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { useState } from "react";
 
 type Option = {
@@ -20,7 +19,6 @@ export const Options = ({
   selectCorrectOption,
 }: Props) => {
   const [options, setOptions] = useState<Option[]>(defalutOptions);
-  const dispatch = useAppDispatch();
 
   const selectWrongOptions = (index: number) => {
     const newOptions = options.map((option, i) => {
