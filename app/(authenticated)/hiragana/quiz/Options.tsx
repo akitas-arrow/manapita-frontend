@@ -1,8 +1,6 @@
 "use client";
 
-import { setWrongAnswerCount } from "@/app/lib/redux/hiraganaQuizSlice";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
-import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 type Option = {
@@ -12,13 +10,15 @@ type Option = {
 
 type Props = {
   defalutOptions: Option[];
-  categoryName: string;
+  selectCorrectOption: (hasWrongOption: boolean) => void;
   answer: string;
 };
 
-export const Options = ({ defalutOptions, categoryName, answer }: Props) => {
-  const router = useRouter();
-  const pathname = usePathname();
+export const Options = ({
+  defalutOptions,
+  answer,
+  selectCorrectOption,
+}: Props) => {
   const [options, setOptions] = useState<Option[]>(defalutOptions);
   const dispatch = useAppDispatch();
 
@@ -32,18 +32,14 @@ export const Options = ({ defalutOptions, categoryName, answer }: Props) => {
     setOptions(newOptions);
   };
 
-  const selectCorrectOption = () => {
+  const onSelectCorrectOption = () => {
     const isHasWrongOption = options.some((option) => option.isClicked);
-    if (isHasWrongOption) {
-      dispatch(setWrongAnswerCount());
-    }
-
-    router.push(`${pathname}/correct?category=${categoryName}`);
+    selectCorrectOption(isHasWrongOption);
   };
 
   const onSelectOption = (index: number) => {
     if (options[index].label === answer) {
-      selectCorrectOption();
+      onSelectCorrectOption();
     } else {
       selectWrongOptions(index);
     }

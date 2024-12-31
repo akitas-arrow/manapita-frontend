@@ -1,4 +1,5 @@
 import { getIdToken } from "@/app/functions/amplifyServerUtils";
+import { fetchAuthSession } from "aws-amplify/auth";
 import { cookies } from "next/headers";
 
 type Questions = {

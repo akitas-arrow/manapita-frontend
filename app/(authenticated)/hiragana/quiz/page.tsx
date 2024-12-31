@@ -1,21 +1,39 @@
-import { fetchQuestions } from "../../../functions/apis/question";
-import { StartButton } from "./StartButton";
-import Link from "next/link";
+"use client";
 
-export default async function Questions({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  const response = await fetchQuestions(
-    `https://d1e8m765cc.execute-api.ap-northeast-1.amazonaws.com/study/question?category=${searchParams.category}`
+import useSWR from "swr";
+import { useSearchParams } from "next/navigation";
+import { fetchQuestions } from "@/app/functions/apisClient/question";
+import { useAppSelector } from "@/app/lib/redux/hooks";
+import { StartStep } from "./StartStep";
+import QuizStep from "./QuizStep";
+import ResultStep from "./ResultStep";
+
+export default function Quiz() {
+  const params = useSearchParams();
+  const searchParams = new URLSearchParams(params).toString();
+  const hiraganaQuiz = useAppSelector((state) => state.hiraganaQuiz);
+
+  const { data: questions } = useSWR(
+    `https://d1e8m765cc.execute-api.ap-northeast-1.amazonaws.com/study/question?${searchParams}`,
+    fetchQuestions
   );
 
   return (
     <div>
-      {response?.category ?? ""}
-      <Link href="/hiragana">もどる</Link>
-      <StartButton questionIds={response?.question_ids ?? []} />
+      {hiraganaQuiz.step === "start" && (
+        <StartStep questionIds={questions?.question_ids ?? []} />
+      )}
+      {hiraganaQuiz.step === "quiz" && (
+        <QuizStep
+          categoryName={questions?.category ?? ""}
+          currentQuestionId={
+            hiraganaQuiz.questionIds[hiraganaQuiz.currentQuestionIndex]
+          }
+        />
+      )}
+      {hiraganaQuiz.step === "result" && (
+        <ResultStep categoryName={questions?.category ?? ""} />
+      )}
     </div>
   );
 }

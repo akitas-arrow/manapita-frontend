@@ -1,15 +1,19 @@
 "use client";
 
-import { useAppSelector } from "@/app/lib/redux/hooks";
+import { resetQuiz } from "@/app/lib/redux/hiraganaQuizSlice";
+import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
 
-export default function QuestionResult() {
-  const pathname = usePathname();
-  const params = useSearchParams();
-  const searchParams = new URLSearchParams(params);
-  const categoryName = searchParams.get("category");
+type Props = {
+  categoryName: string;
+};
+
+export default function ResultStep({ categoryName }: Props) {
+  const dispatch = useAppDispatch();
   const hiraganaQuiz = useAppSelector((state) => state.hiraganaQuiz);
+  const onClickReset = () => {
+    dispatch(resetQuiz());
+  };
 
   return (
     <div>
@@ -23,9 +27,7 @@ export default function QuestionResult() {
         <FightingScore />
       )}
       <p>まちがえたもんだいのかず：{hiraganaQuiz.wrongAnswerCount}</p>
-      <Link href={`/hiragana/quiz?category=${categoryName ?? ""}`}>
-        もういっかい
-      </Link>
+      <button onClick={onClickReset}>もういっかい</button>
       <Link href={`/hiragana`}>とじる</Link>
     </div>
   );
