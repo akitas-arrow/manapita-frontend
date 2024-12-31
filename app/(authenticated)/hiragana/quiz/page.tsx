@@ -19,9 +19,12 @@ export default function Quiz() {
   );
 
   return (
-    <div>
+    <div className="container sm mx-auto my-4">
       {hiraganaQuiz.step === "start" && (
-        <StartStep questionIds={questions?.question_ids ?? []} />
+        <StartStep
+          questionIds={questions?.question_ids ?? []}
+          categoryName={questions?.category ?? ""}
+        />
       )}
       {hiraganaQuiz.step === "quiz" && (
         <QuizStep

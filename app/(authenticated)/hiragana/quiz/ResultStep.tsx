@@ -2,6 +2,8 @@
 
 import { resetQuiz } from "@/app/lib/redux/hiraganaQuizSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
+import { Button } from "@/components/ui/button";
+import { TypographyParagraph } from "@/components/ui/typography";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,7 +15,7 @@ export default function ResultStep() {
   };
 
   return (
-    <div>
+    <div className="grid grid-cols-1 gap-4">
       {hiraganaQuiz.wrongAnswerCount === 0 ? (
         <PerfectScore />
       ) : hiraganaQuiz.wrongAnswerCount <= 3 ? (
@@ -23,45 +25,95 @@ export default function ResultStep() {
       ) : (
         <FightingScore />
       )}
-      <p>まちがえたもんだいのかず：{hiraganaQuiz.wrongAnswerCount}</p>
-      <button onClick={onClickReset}>もういっかい</button>
-      <Link href={`/hiragana`}>とじる</Link>
+      <TypographyParagraph className="text-center">
+        まちがえたもんだいのかず：{hiraganaQuiz.wrongAnswerCount}
+      </TypographyParagraph>
+      <Button
+        variant="outline"
+        className="w-1/3 mx-auto"
+        onClick={onClickReset}
+      >
+        もういっかい
+      </Button>
+      <Button asChild variant="ghost" size="lg" className="w-1/3 mx-auto">
+        <Link href={`/hiragana`}>とじる</Link>
+      </Button>
     </div>
   );
 }
 
 const PerfectScore = () => {
   return (
-    <div>
-      <p>かんぺき！</p>
-      <Image src="/perfect.jpg" alt="かんぺき" width={100} height={100} />
-    </div>
+    <>
+      <TypographyParagraph className="text-center">
+        かんぺき！
+      </TypographyParagraph>
+      <div className="w-[360px] h-[240px] mx-auto relative">
+        <Image
+          src="/perfect.jpg"
+          alt="かんぺき"
+          fill={true}
+          sizes="360px"
+          className="object-contain"
+        />
+      </div>
+    </>
   );
 };
 
 const GreatScore = () => {
   return (
-    <div>
-      <p>すごい！</p>
-      <Image src="/great.jpg" alt="かんぺき" width={100} height={100} />
-    </div>
+    <>
+      <TypographyParagraph className="text-center">
+        すごい！
+      </TypographyParagraph>
+      <div className="w-[360px] h-[240px] mx-auto relative">
+        <Image
+          src="/great.jpg"
+          alt="かんぺき"
+          fill={true}
+          sizes="360px"
+          className="object-contain"
+        />
+      </div>
+    </>
   );
 };
 
 const GoodScore = () => {
   return (
-    <div>
-      <p>そのちょうし！</p>
-      <Image src="/good.jpg" alt="かんぺき" width={100} height={100} />
-    </div>
+    <>
+      <TypographyParagraph className="text-center">
+        そのちょうし！
+      </TypographyParagraph>
+      <div className="w-[360px] h-[240px] mx-auto relative">
+        <Image
+          src="/good.jpg"
+          alt="かんぺき"
+          fill={true}
+          sizes="360px"
+          className="object-contain"
+        />
+      </div>
+    </>
   );
 };
 
 const FightingScore = () => {
   return (
-    <div>
-      <p>がんばれ！</p>
-      <Image src="/fight.jpg" alt="かんぺき" width={100} height={100} />
-    </div>
+    <>
+      <TypographyParagraph className="text-center">
+        がんばれ！
+      </TypographyParagraph>
+      <div className="w-[360px] h-[240px] mx-auto relative">
+        <Image
+          src="/fight.jpg"
+          alt="かんぺき"
+          fill={true}
+          sizes="360px"
+          className="object-contain"
+        />
+      </div>
+    </>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 type Option = {
@@ -44,15 +45,16 @@ export const Options = ({
   };
 
   return (
-    <div>
+    <div className="grid grid-cols-3 gap-4">
       {options.map((option, index) => (
-        <button
+        <Button
+          variant="outline"
           key={index}
           onClick={() => onSelectOption(index)}
           disabled={option.isClicked}
         >
           {option.label}
-        </button>
+        </Button>
       ))}
     </div>
   );

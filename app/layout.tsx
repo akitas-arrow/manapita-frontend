@@ -1,6 +1,7 @@
 import AuthProvider from "./components/AuthProvider";
 import ConfigureAmplifyClientSide from "./components/ConfigureAmplifyClientSide";
 import StoreProvider from "./components/StoreProvider";
+import "@/app/globals.css";
 
 export default function RootLayout({
   children,

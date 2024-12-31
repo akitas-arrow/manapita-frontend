@@ -11,8 +11,8 @@ export default async function SignIn() {
   }
 
   return (
-    <main>
+    <div style={{ marginTop: "100px" }}>
       <AuthenticatorClient />
-    </main>
+    </div>
   );
 }
