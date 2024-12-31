@@ -22,7 +22,7 @@ export default async function Hiragana() {
             </CardButton>
           ))}
         </CardList>
-        <Button variant="ghost" size="lg" asChild>
+        <Button variant="ghost" size="lg" asChild className="w-1/3 mx-auto">
           <Link href="/subject">もどる</Link>
         </Button>
       </div>

@@ -15,6 +15,7 @@ import {
 import useSWRMutation from "swr/mutation";
 import { TypographyParagraph } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { PageLoader } from "@/app/components/PageLoader";
 
 const generateOptions = (options: string[]) => {
   return options.map((option) => ({ label: option, isClicked: false }));
@@ -61,7 +62,7 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
   };
 
   if (isLoading || !quiz) {
-    return <p>よみこみちゅう</p>;
+    return <PageLoader />;
   }
 
   return (

@@ -25,7 +25,7 @@ export const StartStep = ({ questionIds, categoryName }: Props) => {
       <CardButton onClick={handleStart} className="w-1/3 mx-auto">
         すたーと
       </CardButton>
-      <Button asChild variant="ghost" className="w-1/3 mx-auto">
+      <Button asChild variant="ghost" className="w-1/3 mx-auto" size="lg">
         <Link href="/hiragana">もどる</Link>
       </Button>
     </div>

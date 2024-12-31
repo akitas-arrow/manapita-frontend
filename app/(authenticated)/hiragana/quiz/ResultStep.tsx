@@ -5,13 +5,18 @@ import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import { Button } from "@/components/ui/button";
 import { TypographyParagraph } from "@/components/ui/typography";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ResultStep() {
   const dispatch = useAppDispatch();
   const hiraganaQuiz = useAppSelector((state) => state.hiraganaQuiz);
+  const router = useRouter();
   const onClickReset = () => {
     dispatch(resetQuiz());
+  };
+  const backToSelectCategory = () => {
+    dispatch(resetQuiz());
+    router.push("/hiragana");
   };
 
   return (
@@ -35,8 +40,13 @@ export default function ResultStep() {
       >
         もういっかい
       </Button>
-      <Button asChild variant="ghost" size="lg" className="w-1/3 mx-auto">
-        <Link href={`/hiragana`}>とじる</Link>
+      <Button
+        variant="ghost"
+        size="lg"
+        className="w-1/3 mx-auto"
+        onClick={backToSelectCategory}
+      >
+        とじる
       </Button>
     </div>
   );
