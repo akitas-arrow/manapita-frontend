@@ -1,5 +1,6 @@
 import AuthProvider from "./components/AuthProvider";
 import ConfigureAmplifyClientSide from "./components/ConfigureAmplifyClientSide";
+import StoreProvider from "./components/StoreProvider";
 
 export default function RootLayout({
   children,
@@ -10,7 +11,9 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <ConfigureAmplifyClientSide />
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <StoreProvider>{children}</StoreProvider>
+        </AuthProvider>
       </body>
     </html>
   );

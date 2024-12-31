@@ -9,6 +9,7 @@ export const fetchSubject = async (
   url: string
 ): Promise<Subjects | undefined> => {
   const idToken = await getIdToken({ cookies });
+  console.log(idToken?.toString());
   try {
     const response = await fetch(url, {
       headers: {
@@ -23,7 +24,6 @@ export const fetchSubject = async (
       throw new Error(response.statusText);
     }
     const data = await response.json();
-    console.log(data.subject);
 
     return data;
   } catch (error) {
@@ -53,7 +53,6 @@ export const fetchSubjectCategories = async (
       throw new Error(response.statusText);
     }
     const data = await response.json();
-    console.log({ data });
     return data;
   } catch (error) {
     console.error("エラーが発生しました", error);
