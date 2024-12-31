@@ -2,6 +2,7 @@
 
 import { resetQuiz } from "@/app/lib/redux/hiraganaQuizSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ResultStep() {
@@ -33,6 +34,7 @@ const PerfectScore = () => {
   return (
     <div>
       <p>かんぺき！</p>
+      <Image src="/perfect.jpg" alt="かんぺき" width={100} height={100} />
     </div>
   );
 };
@@ -41,6 +43,7 @@ const GreatScore = () => {
   return (
     <div>
       <p>すごい！</p>
+      <Image src="/great.jpg" alt="かんぺき" width={100} height={100} />
     </div>
   );
 };
@@ -49,6 +52,7 @@ const GoodScore = () => {
   return (
     <div>
       <p>そのちょうし！</p>
+      <Image src="/good.jpg" alt="かんぺき" width={100} height={100} />
     </div>
   );
 };
@@ -57,6 +61,7 @@ const FightingScore = () => {
   return (
     <div>
       <p>がんばれ！</p>
+      <Image src="/fight.jpg" alt="かんぺき" width={100} height={100} />
     </div>
   );
 };
