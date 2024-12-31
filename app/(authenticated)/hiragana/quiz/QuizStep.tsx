@@ -16,6 +16,7 @@ import useSWRMutation from "swr/mutation";
 import { TypographyParagraph } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { PageLoader } from "@/app/components/PageLoader";
+import { Loader } from "@/app/components/Loader";
 
 const generateOptions = (options: string[]) => {
   return options.map((option) => ({ label: option, isClicked: false }));
@@ -29,6 +30,7 @@ type Props = {
 export default function QuizStep({ categoryName, currentQuestionId }: Props) {
   const dispatch = useAppDispatch();
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
+  const [isLoadingImg, setIsLoadingImg] = useState<boolean>(true);
   const { data: quiz, isLoading } = useSWR(
     `https://d1e8m765cc.execute-api.ap-northeast-1.amazonaws.com/study/question/${currentQuestionId}?category=${categoryName}`,
     fetchQuestion
@@ -58,7 +60,12 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
 
   const nextQuestion = () => {
     setIsCorrect(false);
+    setIsLoadingImg(true);
     dispatch(nextStep());
+  };
+
+  const onLoadingComplete = () => {
+    setIsLoadingImg(false);
   };
 
   if (isLoading || !quiz) {
@@ -71,14 +78,17 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
         {isCorrect ? "せいかい！" : `この${categoryName}のなまえは？`}
       </TypographyParagraph>
       <div className="w-[360px] h-[240px] mx-auto relative">
+        {isLoadingImg && <ImageLoader />}
         <Image
           src={quiz.question.image_url}
           alt={categoryName}
           className="object-contain"
           fill={true}
           sizes="360px"
+          onLoad={onLoadingComplete}
         />
       </div>
+
       {isCorrect ? (
         <>
           <TypographyParagraph className="text-center">
@@ -102,3 +112,11 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
     </div>
   );
 }
+
+const ImageLoader = () => {
+  return (
+    <>
+      <Loader className="w-[100px] h-full place-self-center" />
+    </>
+  );
+};
