@@ -4,6 +4,13 @@ import { signOut } from "aws-amplify/auth";
 import useAuthRedirect from "../hooks/useAuthRedirect";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Kosugi_Maru } from "next/font/google";
+
+const kosugiMaru = Kosugi_Maru({
+  display: "swap",
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const Header = () => {
   useAuthRedirect({
@@ -15,7 +22,9 @@ export const Header = () => {
     signOut();
   };
   return (
-    <header className="py-4 px-5 flex h-20 items-center justify-between">
+    <header
+      className={`py-4 px-5 flex h-20 items-center justify-between ${kosugiMaru.className}`}
+    >
       <Image
         alt="manapita logo"
         src="/logo.svg"
