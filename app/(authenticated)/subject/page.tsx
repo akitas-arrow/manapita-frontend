@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { fetchSubject } from "../../functions/apis/subject";
-import { CardButton, CardList } from "@/app/components/Card";
-import { TypographyH1 } from "@/components/ui/typography";
+import { CardList } from "@/app/components/CardList";
+import { Button } from "@/components/ui/button";
+import { PageTitle } from "@/app/components/PageTitle";
 
 export default async function Subject() {
   const response = await fetchSubject(
@@ -9,17 +10,15 @@ export default async function Subject() {
   );
 
   return (
-    <div className="container md mx-auto mt-4">
-      <div className="grid grid-cols-1 gap-4">
-        <TypographyH1 className="text-center">なにであそぶ？</TypographyH1>
-        <CardList>
-          {response?.subject.map((s) => (
-            <CardButton key={s.value} asChild>
-              <Link href={`/${s.value}`}>{s.label}</Link>
-            </CardButton>
-          ))}
-        </CardList>
-      </div>
-    </div>
+    <>
+      <PageTitle>なにであそぶ？</PageTitle>
+      <CardList>
+        {response?.subject.map((s) => (
+          <Button key={s.value} asChild size="xl" variant="outline">
+            <Link href={`/${s.value}`}>{s.label}</Link>
+          </Button>
+        ))}
+      </CardList>
+    </>
   );
 }

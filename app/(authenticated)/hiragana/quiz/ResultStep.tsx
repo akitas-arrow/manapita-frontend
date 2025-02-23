@@ -33,15 +33,11 @@ export default function ResultStep() {
       <TypographyParagraph className="text-center">
         まちがえたもんだいのかず：{hiraganaQuiz.wrongAnswerCount}
       </TypographyParagraph>
-      <Button
-        variant="outline"
-        className="w-1/3 mx-auto"
-        onClick={onClickReset}
-      >
+      <Button size="lg" className="w-1/3 mx-auto" onClick={onClickReset}>
         もういっかい
       </Button>
       <Button
-        variant="ghost"
+        variant="secondary"
         size="lg"
         className="w-1/3 mx-auto"
         onClick={backToSelectCategory}

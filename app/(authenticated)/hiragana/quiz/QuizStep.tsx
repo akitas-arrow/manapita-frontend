@@ -74,8 +74,10 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      <TypographyParagraph className="text-center">
-        {isCorrect ? "せいかい！" : `この${categoryName}のなまえは？`}
+      <TypographyParagraph
+        className={isCorrect ? "text-center animate-bounce" : "text-center"}
+      >
+        {isCorrect ? "せいかい 🎉" : `この${categoryName}のなまえは？`}
       </TypographyParagraph>
       <div className="w-[360px] h-[240px] mx-auto relative">
         {isLoadingImg && <ImageLoader />}
@@ -94,11 +96,7 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
           <TypographyParagraph className="text-center">
             {quiz.question.answer}
           </TypographyParagraph>
-          <Button
-            variant="outline"
-            className="w-1/3 mx-auto"
-            onClick={nextQuestion}
-          >
+          <Button className="w-1/3 mx-auto" size="lg" onClick={nextQuestion}>
             つぎへ
           </Button>
         </>
@@ -116,7 +114,7 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
 const ImageLoader = () => {
   return (
     <>
-      <Loader className="w-[100px] h-full place-self-center" />
+      <Loader className="w-[80px] h-full place-self-center" />
     </>
   );
 };

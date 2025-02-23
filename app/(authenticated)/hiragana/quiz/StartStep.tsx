@@ -1,6 +1,6 @@
 "use client";
 
-import { CardButton } from "@/app/components/Card";
+import { PageTitle } from "@/app/components/PageTitle";
 import { nextStep } from "@/app/lib/redux/hiraganaQuizSlice";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { Button } from "@/components/ui/button";
@@ -20,14 +20,16 @@ export const StartStep = ({ questionIds, categoryName }: Props) => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <TypographyH1 className="text-center">{categoryName}</TypographyH1>
-      <CardButton onClick={handleStart} className="w-1/3 mx-auto">
-        すたーと
-      </CardButton>
-      <Button asChild variant="ghost" className="w-1/3 mx-auto" size="lg">
-        <Link href="/hiragana">もどる</Link>
-      </Button>
-    </div>
+    <>
+      <PageTitle>{categoryName}</PageTitle>
+      <div className="w-1/3 mx-auto grid gap-4">
+        <Button onClick={handleStart} size="lg">
+          すたーと
+        </Button>
+        <Button asChild variant="secondary" size="lg">
+          <Link href="/hiragana">もどる</Link>
+        </Button>
+      </div>
+    </>
   );
 };

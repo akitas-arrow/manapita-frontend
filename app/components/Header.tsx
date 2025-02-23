@@ -15,15 +15,17 @@ export const Header = () => {
     signOut();
   };
   return (
-    <header className="p-3 flex h-16 items-center justify-between pl-[116px]">
+    <header className="py-4 px-5 flex h-20 items-center justify-between">
       <Image
         alt="manapita logo"
         src="/logo.svg"
         width={228.51}
         height={76}
-        className="h-full w-full"
+        className="h-full"
       />
-      <Button onClick={handleClick}>さいんあうと</Button>
+      <Button onClick={handleClick} variant="outline">
+        さいんあうと
+      </Button>
     </header>
   );
 };

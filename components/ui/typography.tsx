@@ -7,7 +7,7 @@ export function TypographyH1({
 }: ComponentProps<"h1">) {
   return (
     <h1
-      className={`scroll-m-20 text-3xl font-extrabold tracking-tight ${className}`}
+      className={`scroll-m-20 text-4xl font-extrabold tracking-tight ${className}`}
       {...props}
     >
       {children}

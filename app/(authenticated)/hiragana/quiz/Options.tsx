@@ -45,11 +45,12 @@ export const Options = ({
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-5">
       {options.map((option, index) => (
         <Button
-          variant="outline"
+          variant={option.label === answer ? "outline" : "wrong"}
           key={index}
+          size="lg"
           onClick={() => onSelectOption(index)}
           disabled={option.isClicked}
         >

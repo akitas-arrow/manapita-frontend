@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { fetchSubjectCategories } from "../../functions/apis/subject";
-import { CardButton, CardList } from "@/app/components/Card";
+import { CardList } from "@/app/components/CardList";
 import { TypographyH1 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { PageTitle } from "@/app/components/PageTitle";
 
 export default async function Hiragana() {
   const response = await fetchSubjectCategories(
@@ -10,22 +11,20 @@ export default async function Hiragana() {
   );
 
   return (
-    <div className="container md mx-auto mt-4">
-      <div className="grid grid-cols-1 gap-4">
-        <TypographyH1 className="text-center">
-          もんだいのじゃんるをえらんでね
-        </TypographyH1>
-        <CardList>
-          {response?.category.map((c) => (
-            <CardButton asChild key={c}>
-              <Link href={`/hiragana/quiz?category=${c}`}>{c}</Link>
-            </CardButton>
-          ))}
-        </CardList>
-        <Button variant="ghost" size="lg" asChild className="w-1/3 mx-auto">
+    <>
+      <PageTitle>もんだいのじゃんるをえらんでね</PageTitle>
+      <CardList>
+        {response?.category.map((c) => (
+          <Button asChild key={c} size={"xl"} variant={"outline"}>
+            <Link href={`/hiragana/quiz?category=${c}`}>{c}</Link>
+          </Button>
+        ))}
+      </CardList>
+      <div className="mt-10 mx-auto w-1/3">
+        <Button variant="secondary" size="lg" asChild className="w-full">
           <Link href="/subject">もどる</Link>
         </Button>
       </div>
-    </div>
+    </>
   );
 }

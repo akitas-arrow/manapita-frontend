@@ -24,7 +24,7 @@ export default function Quiz() {
   }
 
   return (
-    <div className="container sm mx-auto my-4">
+    <>
       {hiraganaQuiz.step === "start" && (
         <StartStep
           questionIds={questions?.question_ids ?? []}
@@ -40,6 +40,6 @@ export default function Quiz() {
         />
       )}
       {hiraganaQuiz.step === "result" && <ResultStep />}
-    </div>
+    </>
   );
 }

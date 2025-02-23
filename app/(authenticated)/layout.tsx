@@ -8,7 +8,9 @@ export default function AuthenticatedLayout({
   return (
     <>
       <Header />
-      {children}
+      <div className="container md mx-auto px-4 py-8 min-h-[calc(100dvh-80px)]">
+        {children}
+      </div>
     </>
   );
 }
