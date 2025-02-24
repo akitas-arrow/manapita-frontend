@@ -1,37 +1,45 @@
 "use client";
 
-import { resetQuiz } from "@/app/lib/redux/hiraganaQuizSlice";
-import { useAppDispatch, useAppSelector } from "@/app/lib/redux/hooks";
 import { Button } from "@/components/ui/button";
 import { TypographyParagraph } from "@/components/ui/typography";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function ResultStep() {
-  const dispatch = useAppDispatch();
-  const hiraganaQuiz = useAppSelector((state) => state.hiraganaQuiz);
+type Props = {
+  resetQuiz: () => void;
+  wrongAnswerCount: number;
+  onMutate: () => void;
+};
+
+export default function ResultStep({
+  resetQuiz,
+  wrongAnswerCount,
+  onMutate,
+}: Props) {
   const router = useRouter();
+
   const onClickReset = () => {
-    dispatch(resetQuiz());
+    resetQuiz();
+    onMutate();
   };
+
   const backToSelectCategory = () => {
-    dispatch(resetQuiz());
     router.push("/hiragana");
   };
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      {hiraganaQuiz.wrongAnswerCount === 0 ? (
+      {wrongAnswerCount === 0 ? (
         <PerfectScore />
-      ) : hiraganaQuiz.wrongAnswerCount <= 3 ? (
+      ) : wrongAnswerCount <= 3 ? (
         <GreatScore />
-      ) : hiraganaQuiz.wrongAnswerCount <= 6 ? (
+      ) : wrongAnswerCount <= 6 ? (
         <GoodScore />
       ) : (
         <FightingScore />
       )}
       <TypographyParagraph className="text-center">
-        まちがえたもんだいのかず：{hiraganaQuiz.wrongAnswerCount}
+        まちがえたもんだいのかず：{wrongAnswerCount}
       </TypographyParagraph>
       <Button size="lg" className="w-1/3 mx-auto" onClick={onClickReset}>
         もういっかい

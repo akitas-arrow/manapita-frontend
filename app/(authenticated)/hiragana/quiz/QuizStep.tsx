@@ -7,11 +7,6 @@ import {
 } from "@/app/functions/apisClient/question";
 import useSWR from "swr";
 import { useState } from "react";
-import { useAppDispatch } from "@/app/lib/redux/hooks";
-import {
-  nextStep,
-  setWrongAnswerCount,
-} from "@/app/lib/redux/hiraganaQuizSlice";
 import useSWRMutation from "swr/mutation";
 import { TypographyParagraph } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
@@ -25,10 +20,16 @@ const generateOptions = (options: string[]) => {
 type Props = {
   categoryName: string;
   currentQuestionId: string;
+  setWrongAnswerCount: () => void;
+  next: () => void;
 };
 
-export default function QuizStep({ categoryName, currentQuestionId }: Props) {
-  const dispatch = useAppDispatch();
+export default function QuizStep({
+  categoryName,
+  currentQuestionId,
+  setWrongAnswerCount,
+  next,
+}: Props) {
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [isLoadingImg, setIsLoadingImg] = useState<boolean>(true);
   const { data: quiz, isLoading } = useSWR(
@@ -48,7 +49,7 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
 
   const selectCorrectOption = (hasWrongOption: boolean) => {
     if (hasWrongOption) {
-      dispatch(setWrongAnswerCount());
+      setWrongAnswerCount();
     }
     const postData: PostData = {
       category: categoryName,
@@ -61,7 +62,7 @@ export default function QuizStep({ categoryName, currentQuestionId }: Props) {
   const nextQuestion = () => {
     setIsCorrect(false);
     setIsLoadingImg(true);
-    dispatch(nextStep());
+    next();
   };
 
   const onLoadingComplete = () => {

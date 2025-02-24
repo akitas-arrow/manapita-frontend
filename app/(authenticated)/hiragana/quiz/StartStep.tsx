@@ -1,24 +1,15 @@
 "use client";
 
 import { PageTitle } from "@/app/components/PageTitle";
-import { nextStep } from "@/app/lib/redux/hiraganaQuizSlice";
-import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { Button } from "@/components/ui/button";
-import { TypographyH1 } from "@/components/ui/typography";
 import Link from "next/link";
 
 type Props = {
-  questionIds: string[];
+  handleStart: () => void;
   categoryName: string;
 };
 
-export const StartStep = ({ questionIds, categoryName }: Props) => {
-  const dispatch = useAppDispatch();
-
-  const handleStart = () => {
-    dispatch(nextStep(questionIds));
-  };
-
+export const StartStep = ({ handleStart, categoryName }: Props) => {
   return (
     <>
       <PageTitle>{categoryName}</PageTitle>
