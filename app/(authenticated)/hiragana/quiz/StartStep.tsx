@@ -1,7 +1,7 @@
 "use client";
 
 import { PageTitle } from "@/app/components/PageTitle";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/Button";
 import Link from "next/link";
 
 type Props = {

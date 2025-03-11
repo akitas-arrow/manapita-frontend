@@ -3,7 +3,7 @@
 import { signOut } from "aws-amplify/auth";
 import useAuthRedirect from "../hooks/useAuthRedirect";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/Button";
 import { Kosugi_Maru } from "next/font/google";
 
 const kosugiMaru = Kosugi_Maru({

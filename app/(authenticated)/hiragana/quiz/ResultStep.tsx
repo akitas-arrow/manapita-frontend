@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/Button";
 import { TypographyParagraph } from "@/components/ui/typography";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
