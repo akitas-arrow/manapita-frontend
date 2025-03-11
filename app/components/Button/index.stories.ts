@@ -50,3 +50,18 @@ export const Ghost: Story = {
     children: "かぶとむし",
   },
 };
+
+export const Wrong: Story = {
+  args: {
+    variant: "wrong",
+    size: "lg",
+    children: "かぶとむし",
+    disabled: true,
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/LyV8GcyOISxhl9drHFokzG/Design?node-id=8-51&t=4ERPunZ8xOdEB0Mg-1",
+    },
+  },
+};
