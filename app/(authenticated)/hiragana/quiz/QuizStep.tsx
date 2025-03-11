@@ -9,7 +9,7 @@ import useSWR from "swr";
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
 import { TypographyParagraph } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/Button";
 import { PageLoader } from "@/app/components/PageLoader";
 import { Loader } from "@/app/components/Loader";
 

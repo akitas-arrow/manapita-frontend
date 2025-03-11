@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { fetchSubjectCategories } from "../../functions/apis/subject";
 import { CardList } from "@/app/components/CardList";
-import { TypographyH1 } from "@/components/ui/typography";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/Button";
 import { PageTitle } from "@/app/components/PageTitle";
 
 export default async function Hiragana() {
